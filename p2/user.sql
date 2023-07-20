@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `user` (
 	`id` int NOT NULL AUTO_INCREMENT,
     `email` varchar(255),
-	`username` varchar(10),
+	`username` varchar(20),
 	`password` varchar(64),
 	PRIMARY KEY (`id`)
 );
@@ -22,54 +22,53 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 CREATE TABLE IF NOT EXISTS `saves` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `user_id` varchar(255),
-	`saveNum` int,
+    `user_id` int,
 	PRIMARY KEY (`id`)
 );
 
 
 CREATE TABLE IF NOT EXISTS `unlocked` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `user_id` varchar(255),
-	`saveNum` int,
+    `save_id` int,
+	`level_id` int,
+	`level_unlocked` int,
 	PRIMARY KEY (`id`)
 );
 
 
-CREATE TABLE IF NOT EXISTS `lvls` (
+CREATE TABLE IF NOT EXISTS `levels` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `user_id` varchar(255),
-	`saveNum` int,
+    `level_number` int,
 	PRIMARY KEY (`id`)
 );
 
 
 CREATE TABLE IF NOT EXISTS `scenes` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `user_id` varchar(255),
-	`saveNum` int,
+    `level_id` int,
+	`scene_jpg` varchar(255),
 	PRIMARY KEY (`id`)
 );
 
 
 CREATE TABLE IF NOT EXISTS `objects` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `user_id` varchar(255),
-	`saveNum` int,
+    `scene_id` int,
+	`object_name` varchar(255),
 	PRIMARY KEY (`id`)
 );
 
 
 CREATE TABLE IF NOT EXISTS `permaObjects` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `user_id` varchar(255),
-	`saveNum` int,
+    `object_name` varchar(255),
+	`level_obtained` int,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `contains` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `user_id` varchar(255),
-	`saveNum` int,
+    `save_id` int,
+	`permaObject_id` int,
 	PRIMARY KEY (`id`)
 );
