@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `saves` (
 CREATE TABLE IF NOT EXISTS `unlocked` (
 	`id` int NOT NULL AUTO_INCREMENT,
     `save_id` int,
-	`level_id` int,
 	`level_unlocked` int,
 	PRIMARY KEY (`id`)
 );
