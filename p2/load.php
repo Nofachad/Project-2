@@ -15,16 +15,17 @@ session_start();
     <?php
 
 require_once "config.php";
-        $username = htmlspecialchars($_POST["username"]);
+        
         $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
-        $sth = $dbh->prepare("SELECT password, id FROM user WHERE username = :JID");
-        $sth->bindValue(':JID', $username);
-        $sth->execute();
-        $data = $sth->fetch();
-        $password_hash = $data['password'];
+        
         if (!isset($_SESSION["sessionID"])) {
+            $username = htmlspecialchars($_POST["username"]);
+            $sth = $dbh->prepare("SELECT password, id FROM user WHERE username = :JID");
+            $sth->bindValue(':JID', $username);
+            $sth->execute();
+            $data = $sth->fetch();
+            $password_hash = $data['password'];
                 if (password_verify($_POST['password'], $password_hash)) {
-                echo "Password correct";
                     if(isset($_POST['username'])){
                         $sessionID = $data['id'];
                         $_SESSION["sessionID"] = $sessionID;
@@ -38,7 +39,12 @@ require_once "config.php";
                     header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
                 }
             }//password validation
+        
+        $sth = $dbh->prepare("SELECT * FROM saves");
+        $sth->execute();
+        $saa = $sth->fetchAll();
 
+        var_dump($saa);
 
         
         $sth = $dbh->prepare("SELECT id, username FROM user WHERE id = :JID");
@@ -46,7 +52,7 @@ require_once "config.php";
         $sth->execute();
         $playerName = $sth->fetch();
 
-        echo"<p>hello " . $playerName['name'] . "!</p>"; //announce player name
+        echo"<p>hello " . $playerName['username'] . "!</p>"; //announce player name
 
         
         echo "<form action=\"newsave.php\" method=\"post\">
@@ -55,10 +61,12 @@ require_once "config.php";
         </form>"; //Create New Save
 
 
-        $sth = $dbh->prepare("SELECT saves.id, user.username, unlocked.level_unlocked FROM saves JOIN user ON saves.user_id = user.id JOIN unlocked ON saves.id = unlocked.save_id JOIN levels ON unlocked.level_unlocked = levels.level_number WHERE user.id = :id");
+        $sth = $dbh->prepare("SELECT saves.id, user.username, unlocked.level_unlocked FROM saves JOIN user ON saves.user_id = user.id JOIN unlocked ON saves.id = unlocked.save_id WHERE user.id = :id");
         $sth->bindValue(':id', $_SESSION["sessionID"]);
         $sth->execute();
         $saves = $sth->fetchAll();
+
+        var_dump($saves);
             echo "<form action=\"menu.php\" method=\"get\">
             <label for=\"menu\">Select Save</label>
             <select name=\"menu\" id=\"menu\">";
@@ -71,7 +79,7 @@ require_once "config.php";
         </form>"; //Select Save
 
 
-        echo "<a href=\"https://atdpsites.berkeley.edu/rsun/AIC/x11/signout.php\">Sign Out</a><br>";
+        echo "<a href=\"https://atdpsites.berkeley.edu/rsun/AIC/p2/signout.php\">Sign Out</a><br>";
        
     ?>
 

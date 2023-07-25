@@ -14,7 +14,8 @@
 
     $email = htmlspecialchars($_POST['email']);
     $username = htmlspecialchars($_POST['username']);
-    $password = htmlspecialchars($_POST['password']);
+    $password_unhashed = htmlspecialchars($_POST['password']);
+    $password_hashed = password_hash($password_unhashed, PASSWORD_DEFAULT);
 
     $sth = $dbh->prepare("SELECT username FROM user");
     $sth->execute();
@@ -33,7 +34,7 @@
                     $sth = $dbh->prepare("INSERT INTO user (`email`, `username`, `password`) VALUES (:em, :us, :pa)");
                     $sth->bindValue(':em', $email);
                     $sth->bindValue(':us', $username);
-                    $sth->bindValue(':pa', $password);
+                    $sth->bindValue(':pa', $password_hashed);
                     $sth->execute();
                     header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
                 }
