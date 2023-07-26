@@ -1,0 +1,56 @@
+body{
+    background-color: black;
+}
+#leftbutton{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: rotate(180deg);
+    /* String value */
+}
+#rightbutton{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    /* String value */
+}
+#topbutton{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 48%;
+    top: 20px;
+    transform: rotate(270deg);
+    /* String value */
+}
+#notshown{
+    display: none;
+}
+#bottombutton{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    left: 48%;
+    bottom: 20px;
+    transform: rotate(90deg);
+    /* String value */
+}
+.scene{
+  width: 50%;
+}
+.divimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+.visible{
+    display: flex;
+}
+.hidden{
+    display: none;
+}
