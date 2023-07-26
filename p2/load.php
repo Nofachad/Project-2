@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="loadstyle.php" media="screen">
 </head>
 <body>
 
@@ -31,11 +32,11 @@ require_once "config.php";
                         $_SESSION["sessionID"] = $sessionID;
                     }  
                     else{
-                        header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
+                        header("Location: https://atdpsites.berkeley.edu/ypeng/2023ATDP/P2/p2/signin.php");
                     }
                 }
                 else{
-                    header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
+                    header("Location: https://atdpsites.berkeley.edu/ypeng/2023ATDP/P2/p2/signin.php");
                 }
             }//password validation
         
@@ -50,11 +51,12 @@ require_once "config.php";
         $sth->execute();
         $playerName = $sth->fetch();
 
-        echo"<p>hello " . $playerName['username'] . "!</p>"; //announce player name
+        echo"<p>Hello " . $playerName['username'] . "!</p>"; //announce player name
 
         
         echo "<form action=\"newsave.php\" method=\"post\">
             <label for=\"newsave\">New Save</label>";
+            echo"<br>";
         echo"<input type=\"submit\" class = \"subutton\" value = \"New Save\">
         </form>"; //Create New Save
 
@@ -62,29 +64,33 @@ require_once "config.php";
         $sth = $dbh->prepare("SELECT * FROM unlocked");
         $sth->execute();
         $un = $sth->fetchAll();
-        var_dump($un);
+        //var_dump($un);
 
         echo "<br>";
         $sth = $dbh->prepare("SELECT saves.id, unlocked.level_unlocked FROM saves JOIN unlocked ON saves.id = unlocked.save_id WHERE user_id = :id");
         $sth->bindValue(':id', $_SESSION["sessionID"]);
         $sth->execute();
         $saves = $sth->fetchAll();
-        var_dump($saves);
+        //var_dump($saves);
 
             echo "<form action=\"lvl1/r1.php\" method=\"post\">
-            <label for=\"menu\">Select Save</label>
-            <select name=\"menu\" id=\"menu\">";
+            <label for=\"menu\">Select Save</label>";
+            echo"<br>";
+            echo "<div>";
+            echo"<select name=\"menu\" id=\"menu\">";
             foreach($saves as $save){
                 $unlocked = $save['level_unlocked'];
                 $idd = $save['id'];
                 echo"<option value=\"{$save['id']}\">This save has level $unlocked unlocked id is $idd</option>";
             }
-        echo"<label for=\"select\">Select</label>
-        <input type=\"submit\" class = \"subutton\">
-        </form>"; //Select Save
+        echo"<label for=\"select\">Select</label><br>
+        <input type=\"submit\" class = \"subutton\">";
+        echo "</div>";
+        echo" </form>"; //Select Save
+        echo"<br>";
 
 
-        echo "<a href=\"https://atdpsites.berkeley.edu/rsun/AIC/p2/signout.php\">Sign Out</a><br>";
+        echo "<a href=\"https://atdpsites.berkeley.edu/ypeng/2023ATDP/P2/p2/signout.php\">Sign Out</a><br>";
        
     ?>
 
