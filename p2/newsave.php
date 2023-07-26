@@ -18,12 +18,12 @@ if (isset($_SESSION["sessionID"])) {
 
         $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
         
+        
         $sth = $dbh->prepare("INSERT INTO saves (`user_id`) VALUES (:idp)");
         $sth->bindValue(':idp', $_SESSION["sessionID"]);
         $sth->execute();//create new save element
 
-        $sth = $dbh->prepare("SELECT id FROM saves WHERE user_id = :idp");
-        $sth->bindValue(':idp', $_SESSION["sessionID"]);
+        $sth = $dbh->prepare("SELECT id FROM saves ORDER BY ID DESC LIMIT 1");
         $sth->execute();
         $sav = $sth->fetch(); // selecting id from save table to add to unlocked
 

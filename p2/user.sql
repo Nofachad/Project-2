@@ -34,13 +34,16 @@ CREATE TABLE IF NOT EXISTS `unlocked` (
 	PRIMARY KEY (`id`)
 );
 
-
+                                                                                                                                      
 CREATE TABLE IF NOT EXISTS `levels` (
 	`id` int NOT NULL AUTO_INCREMENT,
     `level_number` int,
 	PRIMARY KEY (`id`)
 );
-
+INSERT INTO `levels` 
+	(`level_number`) 
+VALUES
+	('1');
 
 CREATE TABLE IF NOT EXISTS `scenes` (
 	`id` int NOT NULL AUTO_INCREMENT,
@@ -48,7 +51,17 @@ CREATE TABLE IF NOT EXISTS `scenes` (
 	`scene_jpg` varchar(255),
 	PRIMARY KEY (`id`)
 );
-
+INSERT INTO `scenes` 
+	(`level_id`, `scene_jpg`) 
+VALUES
+	('1', 'room1.png'),
+	('1', 'room2_1.png'),
+	('1', 'room2_1.png'),
+	('1', 'room3_1.png'),
+	('1', 'room3_2.png'),
+	('1', 'room4.png'),
+	('1', 'room5_1.png'),
+	('1', 'room5_2.png');
 
 CREATE TABLE IF NOT EXISTS `objects` (
 	`id` int NOT NULL AUTO_INCREMENT,

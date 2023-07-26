@@ -13,7 +13,6 @@
     $sth->execute();
     $player1 = $sth->fetchAll();
 
-    var_dump($player1);
         echo "<form action=\"load.php\" method=\"post\">";
             echo"<input type=\"text\" name=\"username\" value=\"Username\">";
             echo"<input type=\"text\" name=\"password\" value=\"Password\">";

@@ -29,7 +29,6 @@ require_once "config.php";
                     if(isset($_POST['username'])){
                         $sessionID = $data['id'];
                         $_SESSION["sessionID"] = $sessionID;
-                        echo "<p>" . $_SESSION["sessionID"] . "</p>";
                     }  
                     else{
                         header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
@@ -44,7 +43,6 @@ require_once "config.php";
         $sth->execute();
         $saa = $sth->fetchAll();
 
-        var_dump($saa);
 
         
         $sth = $dbh->prepare("SELECT id, username FROM user WHERE id = :JID");
@@ -61,18 +59,25 @@ require_once "config.php";
         </form>"; //Create New Save
 
 
-        $sth = $dbh->prepare("SELECT saves.id, user.username, unlocked.level_unlocked FROM saves JOIN user ON saves.user_id = user.id JOIN unlocked ON saves.id = unlocked.save_id WHERE user.id = :id");
+        $sth = $dbh->prepare("SELECT * FROM unlocked");
+        $sth->execute();
+        $un = $sth->fetchAll();
+        var_dump($un);
+
+        echo "<br>";
+        $sth = $dbh->prepare("SELECT saves.id, unlocked.level_unlocked FROM saves JOIN unlocked ON saves.id = unlocked.save_id WHERE user_id = :id");
         $sth->bindValue(':id', $_SESSION["sessionID"]);
         $sth->execute();
         $saves = $sth->fetchAll();
-
         var_dump($saves);
-            echo "<form action=\"menu.php\" method=\"get\">
+
+            echo "<form action=\"lvl1/r1.php\" method=\"post\">
             <label for=\"menu\">Select Save</label>
             <select name=\"menu\" id=\"menu\">";
             foreach($saves as $save){
                 $unlocked = $save['level_unlocked'];
-                echo"<option value=\"{$saves['id']}\">This save has the $unlocked level unlocked</option>";
+                $idd = $save['id'];
+                echo"<option value=\"{$save['id']}\">This save has level $unlocked unlocked id is $idd</option>";
             }
         echo"<label for=\"select\">Select</label>
         <input type=\"submit\" class = \"subutton\">
