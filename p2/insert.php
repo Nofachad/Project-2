@@ -18,7 +18,7 @@ try {
             $checker = True;
         }
     }
-    if(isset($htmlspecialchars($_POST['Email'])) && isset($htmlspecialchars($_POST['Username'])) && isset(htmlspecialchars($_POST['UpdatePassword'])){
+    if(isset($htmlspecialchars($_POST['Email'])) && isset($htmlspecialchars($_POST['Username'])) && isset(htmlspecialchars($_POST['UpdatePassword']))){
         if($checker == False){
             if(!($username == 'Username') || !($password == 'Password')){
                 if(strlen($email) < 255 && strlen($username) < 20 && strlen($password) < 64){
