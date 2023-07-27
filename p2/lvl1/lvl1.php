@@ -60,9 +60,11 @@
     </div>
     <div class="divimg hidden" id="rm6_1">
         <img src="scenes/room6_1.png" alt="r1" class = "scene" id = "rm6_1">
+        <img src="scenes/key.png" alt="key1" class = "key" id="key4">
     </div>
     <div class="divimg hidden" id="rm6_2">
         <img src="scenes/room6_2.png" alt="r1" class = "scene" id = "rm6_2">
+        <img src="scenes/key.png" alt="key1" class = "key" id="key4">
     </div>
     <div class="divimg hidden" id="rm7_1">
         <img src="scenes/room7_1.png" alt="r1" class = "scene" id = "rm7_1">
@@ -73,6 +75,47 @@
     <div class="divimg hidden" id="rm8">
         <img src="scenes/room8.png" alt="r1" class = "scene" id = "rm8">
         <img src="scenes/key.png" alt="key1" class = "key" id="key2">
+    </div>
+    <div class="divimg hidden" id="lock">
+        <img src="scenes/lock.png" alt="r1" class = "scene" id = "lock">
+        <!-- <table id="comboTable"> lock combo -->
+            <td>
+                <img src="scenes/combo/0c.png" alt="r1" class = "com visible l1" id ="l10">
+                <img src="scenes/combo/1c.png" alt="r1" class = "com hidden l1" id ="l11">
+                <img src="scenes/combo/2c.png" alt="r1" class = "com hidden l1" id ="l12">
+                <img src="scenes/combo/3c.png" alt="r1" class = "com hidden l1" id ="l13">
+                <img src="scenes/combo/4c.png" alt="r1" class = "com hidden l1" id ="l14">
+                <img src="scenes/combo/5c.png" alt="r1" class = "com hidden l1" id ="l15">
+                <img src="scenes/combo/6c.png" alt="r1" class = "com hidden l1" id ="l16">
+                <img src="scenes/combo/7c.png" alt="r1" class = "com hidden l1" id ="l17">
+                <img src="scenes/combo/8c.png" alt="r1" class = "com hidden l1" id ="l18">
+                <img src="scenes/combo/9c.png" alt="r1" class = "com hidden l1" id ="l19">
+            </td>
+            <td>
+                <img src="scenes/combo/0c.png" alt="r1" class = "com visible l2" id ="l20">
+                <img src="scenes/combo/1c.png" alt="r1" class = "com hidden l2" id ="l21">
+                <img src="scenes/combo/2c.png" alt="r1" class = "com hidden l2" id ="l22">
+                <img src="scenes/combo/3c.png" alt="r1" class = "com hidden l2" id ="l23"> 
+                <img src="scenes/combo/4c.png" alt="r1" class = "com hidden l2" id ="l24">
+                <img src="scenes/combo/5c.png" alt="r1" class = "com hidden l2" id ="l25">
+                <img src="scenes/combo/6c.png" alt="r1" class = "com hidden l2" id ="l26">
+                <img src="scenes/combo/7c.png" alt="r1" class = "com hidden l2" id ="l27">
+                <img src="scenes/combo/8c.png" alt="r1" class = "com hidden l2" id ="l28">
+                <img src="scenes/combo/9c.png" alt="r1" class = "com hidden l2" id ="l29">
+            </td>
+            <td>
+                <img src="scenes/combo/0c.png" alt="r1" class = "com visible l3" id ="l30">
+                <img src="scenes/combo/1c.png" alt="r1" class = "com hidden l3" id ="l31">
+                <img src="scenes/combo/2c.png" alt="r1" class = "com hidden l3" id ="l32">
+                <img src="scenes/combo/3c.png" alt="r1" class = "com hidden l3" id ="l33">
+                <img src="scenes/combo/4c.png" alt="r1" class = "com hidden l3" id ="l34">
+                <img src="scenes/combo/5c.png" alt="r1" class = "com hidden l3" id ="l35">
+                <img src="scenes/combo/6c.png" alt="r1" class = "com hidden l3" id ="l36">
+                <img src="scenes/combo/7c.png" alt="r1" class = "com hidden l3" id ="l37">
+                <img src="scenes/combo/8c.png" alt="r1" class = "com hidden l3" id ="l38">
+                <img src="scenes/combo/9c.png" alt="r1" class = "com hidden l3" id ="l39">
+            </td>
+        </table>
     </div>
 
   </body>

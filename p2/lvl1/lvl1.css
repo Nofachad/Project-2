@@ -1,3 +1,4 @@
+
 body{
     background-color: black;
 }
@@ -74,9 +75,26 @@ body{
     height: 75px;
     position: absolute;
 }
+#key4{
+    left: 30%;
+    bottom: 25%;
+    transform: rotate(270deg);
+    width: 100px;
+    height: 75px;
+    position: absolute;
+}
+#comboTable{
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width: 100px;
+    height: 75px;
+    position: absolute;
+}
 .visible{
     display: flex;
 }
 .hidden{
     display: none;
 }
+
