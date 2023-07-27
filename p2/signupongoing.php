@@ -16,7 +16,7 @@
     $username = htmlspecialchars($_POST['username']);
     $password_unhashed = htmlspecialchars($_POST['password']);
     $password_hashed = password_hash($password_unhashed, PASSWORD_DEFAULT);
-
+    
     $sth = $dbh->prepare("SELECT username FROM user");
     $sth->execute();
     $check1 = $sth->fetchAll();
@@ -27,33 +27,37 @@
             $checker = True;
         }
     }
-    if($checker == False){
-        if(!($username == 'Username') || !($password == 'Password')){
-            if(strlen($email) < 255 && strlen($username) < 20 && strlen($password) < 64){
-                if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-                    $sth = $dbh->prepare("INSERT INTO user (`email`, `username`, `password`) VALUES (:em, :us, :pa)");
-                    $sth->bindValue(':em', $email);
-                    $sth->bindValue(':us', $username);
-                    $sth->bindValue(':pa', $password_hashed);
-                    $sth->execute();
-                    header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
+    if(isset($username) && isset($password_unhashed) && isset($email)){
+        if($checker == False){
+            if(!($username == 'Username') || !($password_unhashed == 'Password')){
+                if(strlen($email) < 255 && strlen($username) < 20 && strlen($password_unhashed) < 64){
+                    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                        $sth = $dbh->prepare("INSERT INTO user (`email`, `username`, `password`) VALUES (:em, :us, :pa)");
+                        $sth->bindValue(':em', $email);
+                        $sth->bindValue(':us', $username);
+                        $sth->bindValue(':pa', $password_hashed);
+                        $sth->execute();
+                        header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
+                    }
+                    else{
+                        echo "Invalid email adress, Please use valid email adress";
+                    }
                 }
                 else{
-                    echo "Invalid email adress, Please use valid email adress";
+                    echo "Please enter valid Email, Username, and Password length. Length should be 255, 20, and 64 at most";
                 }
             }
             else{
-                echo "Please enter valid Email, Username, and Password length. Length should be 255, 20, and 64 at most";
+                echo "Please customize Username and Password";
             }
         }
         else{
-            echo "Please customize Username and Password";
+            echo "Username already exists";
         }
     }
     else{
-        echo "Username already exists";
+        echo "Please fill out all fields";
     }
-
     echo"<form action=\"signup.php\">
         <button type=\"submit\">Return To Sign Up Page</button>
         </form>";

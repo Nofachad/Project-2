@@ -72,18 +72,3 @@ CREATE TABLE IF NOT EXISTS `objects` (
 	`object_name` varchar(255),
 	PRIMARY KEY (`id`)
 );
-
-
-CREATE TABLE IF NOT EXISTS `permaObjects` (
-	`id` int NOT NULL AUTO_INCREMENT,
-    `object_name` varchar(255),
-	`level_obtained` int,
-	PRIMARY KEY (`id`)
-);
-
-CREATE TABLE IF NOT EXISTS `contains` (
-	`id` int NOT NULL AUTO_INCREMENT,
-    `save_id` int,
-	`permaObject_id` int,
-	PRIMARY KEY (`id`)
-);

@@ -13,9 +13,9 @@
     $sth->execute();
     $player1 = $sth->fetchAll();
         echo "<form action=\"signupongoing.php\" method=\"post\">
-            <input type=\"email\" name=\"email\" value=\"Email\">
-            <input type=\"text\" name=\"username\" value=\"Username\">
-            <input type=\"text\" name=\"password\" value=\"Password\">
+            <input type=\"email\" name=\"email\" value=\"Email\" required>
+            <input type=\"text\" name=\"username\" value=\"Username\" required>
+            <input type=\"text\" name=\"password\" value=\"Password\" required>
             <input type=\"submit\" id = \"subutton\"></form>
 
             <form action=\"signin.php\">

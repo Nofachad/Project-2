@@ -6,6 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loadstyle.css">
     <title>Document</title>
 </head>
 <body>
@@ -40,6 +41,34 @@ require_once "config.php";
                             }
                         echo"</table>
                     ";
+                echo "<br>";
+                echo "<form action='insert.php' method='post'>";
+                echo "<textarea id='Email' name='Email' rows='4' cols='50'>Email</textarea>";
+                echo "<textarea id='Username' name='Username' rows='4' cols='50'>Username</textarea>";
+                echo "<input type='password' id='UpdatePassword' name='UpdatePassword'>";
+                echo "<input type='submit' value='insert'>";
+                echo "</form>";
+                echo "<form action='delete.php' method = 'post'>";
+                echo "<label for='delete'>Choose the index to delete:</label>";
+                echo "<select name='delete' id='delete'>";
+                
+                foreach ($user as $data) {
+                echo "<option value=\"{$data['id']}\">".$data['id']."</option>";
+                }
+                echo "<input type='submit' value='delete'>";
+                echo "</form>";
+                echo "<form action='update.php' method = 'post'>";
+                echo "<label for='update'>Choose the index to update:</label>";
+                echo "<select name='update' id='update'>";
+                
+                foreach ($user as $data) {
+                echo "<option value==\"{$data['id']}\">".$data['id']."</option>";
+                }
+                echo "<textarea id='UpdateEmail' name='UpdateEmail' rows='4' cols='50'>Email</textarea>";
+                echo "<textarea id='UpdateUsername' name='UpdateUsername' rows='4' cols='50'>Username</textarea>";
+                echo "<input type='password' id='UpdatePassword' name='UpdatePassword'>";
+                echo "<input type='submit' value='update'>";
+                echo "</form>";
                 
                     die();
             }//end of admin
@@ -64,18 +93,11 @@ require_once "config.php";
         }//password validation
 
         
-        
-        $sth = $dbh->prepare("SELECT * FROM saves");
-        $sth->execute();
-        $saa = $sth->fetchAll();
 
-
-        
-        $sth = $dbh->prepare("SELECT id, username FROM user WHERE id = :JID");
+        $sth = $dbh->prepare("SELECT * FROM user WHERE id = :JID");
         $sth->bindValue(':JID', $_SESSION["sessionID"]);
         $sth->execute();
         $playerName = $sth->fetch();
-
         echo"<p>hello " . $playerName['username'] . "!</p>"; //announce player name
 
         
@@ -98,7 +120,7 @@ require_once "config.php";
         // var_dump($saves);
 
         echo "<br>";
-        $sth = $dbh->prepare("SELECT * FROM objects");
+        $sth = $dbh->prepare("SELECT * FROM unlocked");
         $sth->execute();
         $objs = $sth->fetchAll();
         // var_dump($objs);
@@ -108,7 +130,7 @@ require_once "config.php";
             <select name=\"menu\" id=\"menu\">";
             foreach($saves as $save){
                 $unlocked = $save['level_unlocked'];
-                $idd = $save['id'];
+                
                 echo"<option value=\"{$save['id']}\">This save has level $unlocked unlocked</option>";
             }
         echo"<label for=\"select\">Select</label>

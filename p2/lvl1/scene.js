@@ -305,6 +305,7 @@ $(".scene").click((event) => {//clicking on img scene to alert that you need key
   }
   else if(target[0].id == 'rm5_2'){
     alert("WINNER WINNER CHICKEN DINNER");
+    window.location = "https://atdpsites.berkeley.edu/rsun/AIC/p2/load.php";
   }
   else if(target[0].id == 'lock'){
     $("#lock").removeClass("visible").addClass("hidden");
