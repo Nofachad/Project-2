@@ -5,7 +5,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 	`password` varchar(64),
 	PRIMARY KEY (`id`)
 );
-	
+	INSERT INTO `user` 
+	(`email`, `username`, `password`) 
+VALUES
+	('ryan.is.cool0308@gmail.com', 'admin', '$2y$10$jz1rX4cj3p2QvScVsasR0..Ei8brSKsAHKW8qI1Gzs0Q4LUuDp57K');
 -- INSERT INTO player
 -- 	(`username`, `password`)
 -- VALUES
@@ -65,7 +68,7 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS `objects` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `scene_id` int,
+	`save_id` int,
 	`object_name` varchar(255),
 	PRIMARY KEY (`id`)
 );

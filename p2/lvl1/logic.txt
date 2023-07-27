@@ -1,0 +1,5 @@
+rm1: left, right
+rm2: up, left
+rm3: up, right
+rm4: down
+rm5: down

@@ -1,3 +1,17 @@
+<?php
+    session_start();
+    require_once("../config.php");
+    $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
+    
+    $save_id = htmlspecialchars($_POST["menu"]);
+
+    if (!isset($_SESSION["sessionID"])) {
+        header("Location: https://atdpsites.berkeley.edu/rsun/AIC/p2/signin.php");
+    }
+    else{
+        $_SESSION["saveID"] = $save_id;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,6 +50,7 @@
     </div>
     <div class="divimg hidden" id="rm4">
         <img src="scenes/room4.png" alt="r1" class = "scene" id = "rm4">
+        <img src="scenes/key.png" alt="key1" class = "key" id="key3">
     </div>
     <div class="divimg hidden" id="rm5_1">
         <img src="scenes/room5_1.png" alt="r1" class = "scene" id = "rm5_1">
@@ -57,6 +72,7 @@
     </div>
     <div class="divimg hidden" id="rm8">
         <img src="scenes/room8.png" alt="r1" class = "scene" id = "rm8">
+        <img src="scenes/key.png" alt="key1" class = "key" id="key2">
     </div>
 
   </body>

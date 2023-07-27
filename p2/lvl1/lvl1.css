@@ -39,14 +39,40 @@ body{
     transform: rotate(90deg);
     /* String value */
 }
-.scene{
-  width: 50%;
-}
+
 .divimg{
     display: flex;
     justify-content: center;
     align-items: center;
     height:100vh;
+}
+.scene{
+    position: relative;
+  width: 50%;
+}
+#key1{
+    right: 30%;
+    bottom: 25%;
+    transform: rotate(90deg);
+    width: 100px;
+    height: 75px;
+    position: absolute;
+}
+#key2{
+    right: 45%;
+    bottom: 25%;
+    transform: rotate(90deg);
+    width: 100px;
+    height: 75px;
+    position: absolute;
+}
+#key3{
+    left: 37%;
+    bottom: 30%;
+    transform: rotate(90deg);
+    width: 100px;
+    height: 75px;
+    position: absolute;
 }
 .visible{
     display: flex;
