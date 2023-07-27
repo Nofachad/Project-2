@@ -19,6 +19,30 @@ require_once "config.php";
         $dbh = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
         
         if (!isset($_SESSION["sessionID"])) {
+            if(htmlspecialchars($_POST['password']) == "McNugget" && htmlspecialchars($_POST["username"]) == "admin"){//admin
+                $sth = $dbh->prepare("SELECT * FROM user");
+                $sth->execute();
+                $user = $sth->fetchAll();
+                echo"
+                        <table>
+                        <tr>
+                            <th>id</th>
+                            <th>email</th>
+                            <th>username</th>
+                            <th>password</th>
+                        </tr>";
+                            foreach($user as $data){
+                             echo "<tr><td>".$data['id']."</td>
+                                <td>".$data['email']."</td>
+                                <td>".$data['username']."</td>
+                                <td>".$data['password']."</td></tr><br>";
+                                
+                            }
+                        echo"</table>
+                    ";
+                
+                    die();
+            }//end of admin
             $username = htmlspecialchars($_POST["username"]);
             $sth = $dbh->prepare("SELECT password, id FROM user WHERE username = :JID");
             $sth->bindValue(':JID', $username);
@@ -39,10 +63,7 @@ require_once "config.php";
                 }
         }//password validation
 
-        if(htmlspecialchars($_POST['password']) == "McNugget" && htmlspecialchars($_POST["username"]) == "admin"){//admin
-            echo"<p>hello jlsdia!</p>";
-                die();
-        }
+        
         
         $sth = $dbh->prepare("SELECT * FROM saves");
         $sth->execute();
